@@ -104,9 +104,7 @@ public class StudentPojo implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Students [ID=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", department="
-				+ department + ", year=" + year + ", updated=" + updated + ", created=" + created + ", status=" + status
-				+ "]";
+		return id + firstName + lastName + department + year + updated + created + status;
 	}
 	
 	
