@@ -8,8 +8,19 @@ public interface StudentService {
 	
 	public List<StudentPojo> getStudentByName();
 
-	public static List<StudentPojo> findByName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<StudentPojo> getAllStudents();
+
+	public StudentPojo createStudent(StudentPojo student);
+
+//	public StudentPojo updateStudent(Integer studentId, StudentPojo studentDetails);
+
+	public void deleteById(Integer studentId);
+
+	public void updateStudent(Integer studentId, StudentPojo studentDetails);
+
+	public StudentPojo findStudentById(Integer studentId);
+
+	
+
+
 }

@@ -1,15 +1,11 @@
 package ro.sapientia.kbotond.controller;
 
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ro.sapientia.kbotond.dao.UserDao;
-import ro.sapientia.kbotond.pojo.StudentPojo;
+import ro.sapientia.kbotond.bl.UserBl;
 import ro.sapientia.kbotond.pojo.UserPojo;
 
 @RestController
@@ -28,50 +23,52 @@ import ro.sapientia.kbotond.pojo.UserPojo;
 public class UserController {
 
 	@Autowired
-	UserDao userDao;
+	UserBl userBl;
 	
 	@GetMapping("/user")
 	public List<UserPojo> getAllUsers(){
-		return userDao.findAll();
+		return userBl.findAll();
 	}
 	
-	// Create a new User
-	@PostMapping("/user")
-	public UserPojo createUser(@Valid @RequestBody UserPojo user) {
-	    return userDao.save(user);
-	}
+	// Create a new Student
+		@PostMapping("/user")
+		public UserPojo createUser(@RequestBody UserPojo user) {
+			try {
+				return userBl.createUser(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
 	
-	// Get a Single User
 	@GetMapping("/user/{id}")
 	public UserPojo getUserById(@PathVariable(value = "id") Integer userId) {
-		System.out.println(" ------------------"+userId);
-		return userDao.findById(userId)
-		    .orElseThrow(() -> new ResourceNotFoundException("User"));
+			return userBl.findUserById(userId);
+
 	}
 	
-	// Update a User
 	@PutMapping("/user/{id}")
-	public UserPojo updateUsert(@PathVariable(value = "id") Integer userId,
-	                                        @Valid @RequestBody UserPojo userDetails) {
-
-		UserPojo user = userDao.findById(userId)
-	    		.orElseThrow(() -> new ResourceNotFoundException("User"));
-
-		user.setId(userDetails.getId());
-	    
-
-		UserPojo updatedUser = userDao.save(user);
-	    return updatedUser;
+	public UserPojo updateUser(@PathVariable(value = "id") Integer userId,
+            @Valid @RequestBody UserPojo usertDetails) {
+		try {
+			userBl.updateUser(userId,usertDetails);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
 	}
 	
 	@DeleteMapping("/user/{id}")
-	public ResponseEntity<?> deleteUsert(@PathVariable(value = "id") Integer userId) {
-		UserPojo user = userDao.findById(userId)
-				.orElseThrow(() -> new ResourceNotFoundException("User"));
+	public UserPojo deleteStudentById(@PathVariable(value = "id") Integer userId) {
+		try {
+			userBl.deleteById(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
 
-		userDao.delete(user);
-
-	    return ResponseEntity.ok().build();
+		
 	}
-	
 }

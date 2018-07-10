@@ -1,6 +1,5 @@
 package ro.sapientia.kbotond.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -9,7 +8,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
 
 
 @Entity
@@ -17,7 +15,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
         allowGetters = true)
-public class StudentPojo implements Serializable{
+public class StudentPojo{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
