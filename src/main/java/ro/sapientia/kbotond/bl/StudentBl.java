@@ -25,11 +25,6 @@ public class StudentBl {
 		return studentService.createStudent(student);
 	}
 
-//	public StudentPojo updateStudent(Integer studentId, @Valid StudentPojo studentDetails) throws Exception{
-//		
-//		if (studentService.findById(studentId)==null) throw new Exception("No student with this id!");
-//		return studentService.updateStudent(studentId,studentDetails);
-//	}
 
 	public void deleteById(Integer studentId) throws Exception {
 		if (studentService.findStudentById(studentId)==null) throw new Exception("No student with this id!");
@@ -49,11 +44,6 @@ public class StudentBl {
 		return studentService.findStudentById(studentId);
 	}
 
-//	public void save(StudentPojo studentDetails) throws Exception {
-//		if (studentDetails == null) throw new Exception("Empty student found!");	
-//		if (studentDetails.getFirstName()==null || studentDetails.getFirstName().isEmpty()) throw new Exception("Student first name null or empty!");	
-//		studentService.save(studentDetails);
-//	}
 
 
 

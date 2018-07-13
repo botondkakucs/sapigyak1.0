@@ -12,8 +12,6 @@ public interface StudentService {
 
 	public StudentPojo createStudent(StudentPojo student);
 
-//	public StudentPojo updateStudent(Integer studentId, StudentPojo studentDetails);
-
 	public void deleteById(Integer studentId);
 
 	public void updateStudent(Integer studentId, StudentPojo studentDetails);

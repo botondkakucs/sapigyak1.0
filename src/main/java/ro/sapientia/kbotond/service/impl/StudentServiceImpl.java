@@ -32,13 +32,6 @@ public class StudentServiceImpl implements StudentService{
 		return studentsDao.save(student);
 	}
 
-
-//	@Override
-//	public StudentPojo updateStudent(Integer studentId, StudentPojo studentDetails) {
-//		// TODO Auto-generated method stub
-//		return studentsDao.save(studentDetails);
-//	}
-
 	@Override
 	public void deleteById(Integer studentId) {
 		studentsDao.deleteById(studentId);
@@ -63,22 +56,10 @@ public class StudentServiceImpl implements StudentService{
 		studentsDao.save(student);
 	}
 
-
 	@Override
 	public StudentPojo findStudentById(Integer studentId) {
 		// TODO Auto-generated method stub
 		return studentsDao.findById(studentId)
 				.orElseThrow(() -> new ResourceNotFoundException("Student"));
 	}
-
-
-
-//	@Override
-//	public StudentPojo updateStudent(Integer studentId, @Valid StudentPojo studentDetails) {
-//		return studentsDao.
-//	}
-
-	
-	
-	
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
+
 @ComponentScan({"ro.sapientia.kbotond"})
 public class Application {
 
